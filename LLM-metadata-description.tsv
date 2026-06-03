@@ -1,0 +1,40 @@
+Neo4j Field Name	English Name	Bulgarian Name	Data Type
+family	Family	Семейство	String – discrete (from list)
+name	Name	Име	String – free value
+abbreviation	Abbreviation	Абревиатура	String – free value
+full_name	Full Name	Пълно име	String – free value
+creator	Creator	Създател	String – discrete (from list)
+license	License Type	Тип лиценз	String – discrete (from list)
+published_date	Publication Date	Дата на публикуване	Date – YYYY.MM.DD (partial: YYYY.MM or YYYY)
+modality	Modality	Модалност	String – free value
+input_modality_details	Input Modality	Модалност на входящите данни	Array[String] – discrete values (текст, код, изображение, аудио, видео)
+output_modality_details	Output Modality	Модалност на изходящите данни	Array[String] – discrete values (текст, код, изображение, аудио, видео)
+parameters	Size (Parameters)	Размер в брой параметри	Integer – abbreviated (nM, nB, nT, or with + suffix meaning "more than")
+parameters_description **	Size — Full Description	Размер в брой параметри (описание)	String – free value
+architecture	Model Architecture	Архитектура на модела	String – free value
+context_length	Context Length	Дължина на контекста	Integer – abbreviated (nK, nM, nB, or with + suffix meaning "more than")
+includes_bulgarian	Includes Bulgarian	Включва ли се български	String – discrete (Да, Не, Неизвестно)
+languages_description	Languages	Заложени езици	String – free value
+languages_details **	Languages (list)	Заложени езици (списък)	Array[String] – free values
+applications_description	Model Purpose Description	Кратко описание на предназначението на модела	String – free value
+applications_details **	Model Purpose (list)	Предназначение на модела (списък)	Array[Object] – { name: String, description: String }
+training_data	Training Data Description	Кратко описание на данните за трениране	String – free value
+training_methods	Training Methods Description	Кратко описание на начина на трениране	Array[String] – free values
+benchmarks_description	Benchmarks / Testing Data	Информация за данните за тестване	String – free value
+benchmarks_details **	Benchmarks (list)	Данни за тестване (списък)	Array[Object] – { name: String, result: String }
+unique_methods_description	Unique Methods / Features	Допълнителни методи или особености на модела	String – free value
+unique_methods_details **	Unique Methods (list)	Допълнителни методи (списък)	Array[Object] – { name: String, description: String }
+publications_description	Links to Publications	Връзки към публикации, описващи модела	String – free value (URL or text)
+publications_details **	Publications (list)	Публикации (списък)	Array[String] – BibTeX entries or URLs
+other_details	Additional Information	Допълнителна информация	String – free value
+fine_tuning *	Fine Tuning	Фина настройка	String – discrete (from list, e.g. RLHF, SFT, LoRA)
+base_model **	Base Model	Базов модел	String – discrete (from list of known model names)
+url	Direct Link	Директна връзка към официалната страница на модела	String – URL
+ollama_link	Ollama Link	Връзка в Ollama	String – URL
+github_link	GitHub Link	Връзка в GitHub	String – URL
+huggingface_link	HuggingFace Link	Връзка в HuggingFace	String – URL
+chat_access	Chat Access	Достъп чрез чат интерфейс	String – discrete (безплатен, платен, не)
+api_access	API Access	Достъп чрез API	String – discrete (безплатен, платен, не)
+download_access	Download Access	Достъп за изтегляне	String – discrete (безплатен, платен, не)
+last_accessed	Last Checked	Последна проверка	Date – YYYY.MM.DD
+verified	Verified description	Верифицирано описание	Boolean
