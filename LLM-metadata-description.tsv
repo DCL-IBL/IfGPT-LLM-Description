@@ -9,10 +9,10 @@ published_date	Publication Date	Дата на публикуване	Date – YY
 modality	Modality	Модалност	String – free value
 input_modality_details	Input Modality	Модалност на входящите данни	Array[String] – discrete values (текст, код, изображение, аудио, видео)
 output_modality_details	Output Modality	Модалност на изходящите данни	Array[String] – discrete values (текст, код, изображение, аудио, видео)
-parameters	Size (Parameters)	Размер в брой параметри	Integer – abbreviated (nM, nB, nT, or with + suffix meaning 'more than')
-parameters_description **	Size – Full Description	Размер в брой параметри (описание)	String – free value
+parameters	Size (Parameters)	Размер в брой параметри	Integer – abbreviated (nM, nB, nT, or with + suffix meaning "more than")
+parameters_description **	Size — Full Description	Размер в брой параметри (описание)	String – free value
 architecture	Model Architecture	Архитектура на модела	String – free value
-context_length	Context Length	Дължина на контекста	Integer – abbreviated (nK, nM, nB, or with + suffix meaning 'more than')
+context_length	Context Length	Дължина на контекста	Integer – abbreviated (nK, nM, nB, or with + suffix meaning "more than")
 includes_bulgarian	Includes Bulgarian	Включва ли се български	String – discrete (Да, Не, Неизвестно)
 languages_description	Languages	Заложени езици	String – free value
 languages_details **	Languages (list)	Заложени езици (списък)	Array[String] – free values
