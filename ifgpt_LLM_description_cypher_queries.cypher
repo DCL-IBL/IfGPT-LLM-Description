@@ -1,5 +1,5 @@
 // =============================================================================
-// IfGPT — Neo4j Cypher Queries
+// IfGPT — Neo4j Cypher Queries on LLM Description
 // Database: neo4j+s://8fab59d8.databases.neo4j.io
 // Node label: LLM
 // All queries filter on n.verified IN ['VERIFIED'] unless stated otherwise
