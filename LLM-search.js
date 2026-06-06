@@ -1,396 +1,227 @@
-        const csvUrl = 'LLM-descr.csv';
-        let allData = [];
-        
-        Papa.parse(csvUrl, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: function(results) {
-                allData = results.data;
-                createSearchForm(allData);
-                displayData(allData);
-            },
-            error: function(error) {
-                document.getElementById('container').innerHTML = 
-                    '<div class="error">Error loading CSV: ' + error.message + '</div>';
-            }
-        });
+const CFG = {
+  uri: 'neo4j+s://8fab59d8.databases.neo4j.io',
+  user: 'neo4j',
+  password: 'HPa7HpbVTKwadDVkSZbbjvb5-5gxJPaAgWIP68xbcbk'
+};
+const PAGE_SIZE = 15;
+let driver = null;
+let currentPage = 1;
+let totalResults = 0;
+let lastQuery = null;
 
-        function createSearchForm(data) {
-            const formContainer = document.getElementById('search-form-container');
-            
-            // Extract unique values from 'Семейство' category (first column)
-            const familyValues = new Set();
-            data.forEach(entry => {
-                const value = entry['Семейство'];
-                if (value && value.trim() !== '') {
-                    familyValues.add(value.trim());
-                }
-            });
+// ── Connection ──────────────────────────────────────────
+async function connect() {
+  try {
+    driver = neo4j.driver(CFG.uri, neo4j.auth.basic(CFG.user, CFG.password));
+    await driver.verifyConnectivity();
+    await ldmodels();
+  } catch(e) {
+    console.error('Connection error:', e.message);
+  }
+}
 
-            // Extract unique values from 'Тип лиценз' category
-            const licenseValues = new Set();
-            data.forEach(entry => {
-                const value = entry['Тип лиценз'];
-                if (value && value.trim() !== '') {
-                    licenseValues.add(value.trim());
-                }
-            });
+// ── Load dropdowns & checkboxes on init ─────────────────
+async function ldmodels() {
+  const s = driver.session({ defaultAccessMode: neo4j.session.READ });
 
-            // Extract unique values from 'Модалност' category (may contain comma-separated values)
-            const modalityValues = new Set();
-            data.forEach(entry => {
-                const value = entry['Модалност'];
-                if (value && value.trim() !== '') {
-                    // Split by comma and add each value separately
-                    const values = value.split(',').map(v => v.trim()).filter(v => v !== '');
-                    values.forEach(v => modalityValues.add(v));
-                }
-            });
+  // Families
+  const rf = await s.run(
+    "MATCH (n:LLM) WHERE n.verified IN ['VERIFIED'] RETURN DISTINCT n.family AS fam ORDER BY fam"
+  );
+  // → populate #fam-list checkboxes
 
-            // Sort values alphabetically
-            const sortedFamilyValues = Array.from(familyValues).sort();
-            const sortedLicenseValues = Array.from(licenseValues).sort();
-            const sortedModalityValues = Array.from(modalityValues).sort();
+  // Licenses
+  const rl = await s.run(
+    "MATCH (n:LLM) WHERE n.verified IN ['VERIFIED'] AND n.license IS NOT NULL RETURN DISTINCT n.license AS lic"
+  );
+  // → classify with classifyLicense(), populate #lic-list checkboxes
 
-            const formHTML = `
-                <div class="search-form">
-                    <h3>Семейство</h3>
-                    <div class="checkbox-container" id="checkbox-container">
-                        ${sortedFamilyValues.map(value => `
-                            <div class="checkbox-item">
-                                <label>
-                                    <input type="checkbox" name="family" value="${value}">
-                                    ${value}
-                                </label>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <h3>Име на модел</h3>
-                    <div class="text-field-container">
-                        <input type="text" id="name-search" placeholder="Въведете текст за търсене...">
-                    </div>
-                    <h3>Тип лиценз</h3>
-                    <div class="checkbox-container" id="license-checkbox-container">
-                        ${sortedLicenseValues.map(value => `
-                            <div class="checkbox-item">
-                                <label>
-                                    <input type="checkbox" name="license" value="${value}">
-                                    ${value}
-                                </label>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <h3>Видове достъп</h3>
-                    <div class="checkbox-container" id="access-checkbox-container">
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="access" value="chat">
-                                Достъп с чат интерфейс
-                            </label>
-                        </div>
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="access" value="api">
-                                Достъп с API
-                            </label>
-                        </div>
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="access" value="download">
-                                Достъп за изтегляне
-                            </label>
-                        </div>
-                    </div>
-                    <h3>Година на публикуване</h3>
-                    <div class="year-range-container">
-                        <input type="text" id="year-start" placeholder="От година">
-                        <span>-</span>
-                        <input type="text" id="year-end" placeholder="До година">
-                    </div>
-                    <h3>Размер на модела (в брой параметри)</h3>
-                    <div class="checkbox-container" id="size-checkbox-container">
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="size" value="very-small">
-                                Много малки (p&lt;1B)
-                            </label>
-                        </div>
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="size" value="small">
-                                Малки (1B&lt;=p&lt;7B)
-                            </label>
-                        </div>
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="size" value="medium">
-                                Средни (7B&lt;=p&lt;70B)
-                            </label>
-                        </div>
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="size" value="large">
-                                Големи (70B&lt;=p&lt;400B)
-                            </label>
-                        </div>
-                        <div class="checkbox-item">
-                            <label>
-                                <input type="checkbox" name="size" value="very-large">
-                                Много големи (400B&lt;=p)
-                            </label>
-                        </div>
-                    </div>
-                    <h3>Модалност</h3>
-                    <div class="checkbox-container" id="modality-checkbox-container">
-                        ${sortedModalityValues.map(value => `
-                            <div class="checkbox-item">
-                                <label>
-                                    <input type="checkbox" name="modality" value="${value}">
-                                    ${value}
-                                </label>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <button class="search-button" onclick="filterData()">Търси</button>
-                </div>
-            `;
+  // Model name dropdown
+  const rn = await s.run(
+    "MATCH (n:LLM) WHERE n.verified IN ['VERIFIED'] RETURN n.name AS name, n.parameters AS params ORDER BY n.family, n.name"
+  );
+  // → populate #f-name <select>
 
-            formContainer.innerHTML = formHTML;
-        }
+  await s.close();
+}
 
-        function filterData() {
-            const familyCheckboxes = document.querySelectorAll('input[name="family"]:checked');
-            const selectedFamilyValues = Array.from(familyCheckboxes).map(cb => cb.value);
-            
-            const licenseCheckboxes = document.querySelectorAll('input[name="license"]:checked');
-            const selectedLicenseValues = Array.from(licenseCheckboxes).map(cb => cb.value);
-            
-            const accessCheckboxes = document.querySelectorAll('input[name="access"]:checked');
-            const selectedAccessValues = Array.from(accessCheckboxes).map(cb => cb.value);
-            
-            const sizeCheckboxes = document.querySelectorAll('input[name="size"]:checked');
-            const selectedSizeValues = Array.from(sizeCheckboxes).map(cb => cb.value);
-            
-            const modalityCheckboxes = document.querySelectorAll('input[name="modality"]:checked');
-            const selectedModalityValues = Array.from(modalityCheckboxes).map(cb => cb.value);
-            
-            const nameSearch = document.getElementById('name-search').value.trim().toLowerCase();
-            const yearStart = document.getElementById('year-start').value.trim();
-            const yearEnd = document.getElementById('year-end').value.trim();
+// ── License classifier ───────────────────────────────────
+function classifyLicense(raw) {
+  if (!raw) return null;
+  const s = raw.toLowerCase();
+  if (s.includes('llama'))      return 'Llama';
+  if (s.includes('gemma'))      return 'Gemma';
+  if (s.includes('mistral'))    return 'Mistral';
+  if (s.includes('deepseek'))   return 'DeepSeek';
+  if (s.includes('qwen'))       return 'Qwen';
+  if (s.includes('phi'))        return 'Phi';
+  if (s.includes('falcon'))     return 'Falcon';
+  if (s.includes('mit'))        return 'MIT';
+  if (s.includes('apache'))     return 'Apache 2.0';
+  if (s.includes('cc-by') || s.includes('cc by')) return 'Creative Commons';
+  if (s.includes('openrail'))   return 'OpenRAIL';
+  if (s.includes('bigscience')) return 'BigScience';
+  if (s.includes('open') || s.includes('free') || s.includes('permissive')) return 'Свободен лиценз';
+  if (s.includes('proprietary') || s.includes('commercial') ||
+      s.includes('paid') || s.includes('anthropic') ||
+      s.includes('openai') || s.includes('google') || s.includes('microsoft'))
+    return 'Платен лиценз';
+  return 'Друг';
+}
 
-            let filteredData = allData;
+// ── Build dynamic WHERE clause ───────────────────────────
+function buildQuery() {
+  const conds = [], params = {};
 
-            // Filter by family checkboxes if any are selected
-            if (selectedFamilyValues.length > 0) {
-                filteredData = filteredData.filter(entry => {
-                    const familyValue = entry['Семейство'];
-                    return familyValue && selectedFamilyValues.includes(familyValue.trim());
-                });
-            }
+  const families = vals('family');
+  if (families.length) { conds.push('n.family IN $families'); params.families = families; }
 
-            // Filter by license checkboxes if any are selected
-            if (selectedLicenseValues.length > 0) {
-                filteredData = filteredData.filter(entry => {
-                    const licenseValue = entry['Тип лиценз'];
-                    return licenseValue && selectedLicenseValues.includes(licenseValue.trim());
-                });
-            }
+  const name = document.getElementById('f-name').value.trim();
+  if (name) { conds.push('toLower(n.name) CONTAINS toLower($name)'); params.name = name; }
 
-            // Filter by access checkboxes if any are selected
-            if (selectedAccessValues.length > 0) {
-                filteredData = filteredData.filter(entry => {
-                    return selectedAccessValues.some(accessType => {
-                        if (accessType === 'chat') {
-                            return entry['Достъп с чат интерфейс'] && entry['Достъп с чат интерфейс'].toLowerCase().includes('да');
-                        } else if (accessType === 'api') {
-                            return entry['Достъп с API'] && entry['Достъп с API'].toLowerCase().includes('да');
-                        } else if (accessType === 'download') {
-                            return entry['Достъп за изтегляне'] && entry['Достъп за изтегляне'].toLowerCase().includes('да');
-                        }
-                        return false;
-                    });
-                });
-            }
+  const licenses = vals('license');
+  if (licenses.length) {
+    const lc = licenses.map((l, i) => { params['lic'+i] = l; return `toLower(n.license) CONTAINS toLower($lic${i})`; });
+    conds.push('(' + lc.join(' OR ') + ')');
+  }
 
-            // Filter by year range if either start or end year is provided
-            if (yearStart !== '' || yearEnd !== '') {
-                filteredData = filteredData.filter(entry => {
-                    const dateValue = entry['Дата на публикуване'];
-                    if (!dateValue) return false;
-                    
-                    // Extract 4-digit year starting with 20
-                    const yearMatch = dateValue.match(/20\d{2}/);
-                    if (!yearMatch) return false;
-                    
-                    const publicationYear = parseInt(yearMatch[0]);
-                    
-                    // Check start year if provided
-                    if (yearStart !== '') {
-                        const startYear = parseInt(yearStart);
-                        if (publicationYear < startYear) return false;
-                    }
-                    
-                    // Check end year if provided
-                    if (yearEnd !== '') {
-                        const endYear = parseInt(yearEnd);
-                        if (publicationYear > endYear) return false;
-                    }
-                    
-                    return true;
-                });
-            }
+  const access = vals('access');
+  if (access.length) {
+    const ac = access.map(a => {
+      if (a === 'ollama')      return 'n.ollama_link IS NOT NULL';
+      if (a === 'huggingface') return 'n.huggingface_link IS NOT NULL';
+      if (a === 'github')      return 'n.github_link IS NOT NULL';
+      return null;
+    }).filter(Boolean);
+    if (ac.length) conds.push('(' + ac.join(' OR ') + ')');
+  }
 
-            // Filter by checkboxes if any are selected
-            if (selectedSizeValues.length > 0) {
-                filteredData = filteredData.filter(entry => {
-                    const sizeValue = entry['Размер в брой параметри'];
-                    if (!sizeValue) return false;
-                    
-                    // Exclude entries with 'неизвестно'
-                    if (sizeValue.toString().toLowerCase().includes('неизвестно')) {
-                        return false;
-                    }
-                    
-                    // Extract number and convert to billions
-                    const sizeStr = sizeValue.toString().toLowerCase();
-                    let sizeInBillions = 0;
-                    
-                    // Parse different formats: "7B", "1.5B", "500M", etc.
-                    const match = sizeStr.match(/([\d.]+)\s*([bmk])?/i);
-                    if (match) {
-                        const num = parseFloat(match[1]);
-                        const unit = match[2] ? match[2].toLowerCase() : '';
-                        
-                        if (unit === 'b') {
-                            sizeInBillions = num;
-                        } else if (unit === 'm') {
-                            sizeInBillions = num / 1000;
-                        } else if (unit === 'k') {
-                            sizeInBillions = num / 1000000;
-                        } else {
-                            // Assume billions if no unit
-                            sizeInBillions = num;
-                        }
-                    }
-                    
-                    // Check if size matches any selected category
-                    return selectedSizeValues.some(sizeCategory => {
-                        if (sizeCategory === 'very-small') {
-                            return sizeInBillions < 1;
-                        } else if (sizeCategory === 'small') {
-                            return sizeInBillions >= 1 && sizeInBillions < 7;
-                        } else if (sizeCategory === 'medium') {
-                            return sizeInBillions >= 7 && sizeInBillions < 70;
-                        } else if (sizeCategory === 'large') {
-                            return sizeInBillions >= 70 && sizeInBillions < 400;
-                        } else if (sizeCategory === 'very-large') {
-                            return sizeInBillions >= 400;
-                        }
-                        return false;
-                    });
-                });
-            }
+  const modality = vals('modality');
+  if (modality.length) {
+    const mc = modality.map((m, i) => { params['mod'+i] = m; return `$mod${i} IN n.input_modality_details`; });
+    conds.push('(' + mc.join(' OR ') + ')');
+  }
 
-            // Filter by modality checkboxes if any are selected
-            if (selectedModalityValues.length > 0) {
-                filteredData = filteredData.filter(entry => {
-                    const modalityValue = entry['Модалност'];
-                    if (!modalityValue) return false;
-                    
-                    // Check if any selected modality is contained in the entry's modality field
-                    return selectedModalityValues.some(selectedModality => {
-                        return modalityValue.toLowerCase().includes(selectedModality.toLowerCase());
-                    });
-                });
-            }
+  const outModality = vals('out_modality');
+  if (outModality.length) {
+    const omc = outModality.map((m, i) => { params['omod'+i] = m; return `$omod${i} IN n.output_modality_details`; });
+    conds.push('(' + omc.join(' OR ') + ')');
+  }
 
-            // Filter by name text if not empty
-            if (nameSearch !== '') {
-                filteredData = filteredData.filter(entry => {
-                    const nameValue = entry['Име'];
-                    return nameValue && nameValue.toLowerCase().includes(nameSearch);
-                });
-            }
+  const sizes = vals('size');
+  if (sizes.length) {
+    const sc = sizes.map(s => {
+      if (s === 'very-small') return "(n.parameters IS NOT NULL AND toFloat(replace(replace(n.parameters,'B',''),'T','')) < 1 AND NOT n.parameters ENDS WITH 'T')";
+      if (s === 'small')      return "(n.parameters IS NOT NULL AND toFloat(replace(n.parameters,'B','')) >= 1 AND toFloat(replace(n.parameters,'B','')) < 7 AND NOT n.parameters ENDS WITH 'T')";
+      if (s === 'medium')     return "(n.parameters IS NOT NULL AND toFloat(replace(n.parameters,'B','')) >= 7 AND toFloat(replace(n.parameters,'B','')) < 70 AND NOT n.parameters ENDS WITH 'T')";
+      if (s === 'large')      return "(n.parameters IS NOT NULL AND toFloat(replace(n.parameters,'B','')) >= 70 AND toFloat(replace(n.parameters,'B','')) < 400 AND NOT n.parameters ENDS WITH 'T')";
+      if (s === 'very-large') return "(n.parameters IS NOT NULL AND (n.parameters ENDS WITH 'T' OR toFloat(replace(n.parameters,'B','')) >= 400))";
+      return null;
+    }).filter(Boolean);
+    if (sc.length) conds.push('(' + sc.join(' OR ') + ')');
+  }
 
-            displayData(filteredData);
-        }
+  const yearFrom = document.getElementById('f-year-from').value.trim();
+  const yearTo   = document.getElementById('f-year-to').value.trim();
+  if (yearFrom) { conds.push("toInteger(substring(n.published_date, size(n.published_date)-4, 4)) >= $yf"); params.yf = parseInt(yearFrom); }
+  if (yearTo)   { conds.push("toInteger(substring(n.published_date, size(n.published_date)-4, 4)) <= $yt"); params.yt = parseInt(yearTo); }
 
-        function displayData(data) {
-            const container = document.getElementById('container');
-            container.innerHTML = '';
+  if (document.getElementById('f-bg').checked) {
+    conds.push("(toLower(n.includes_bulgarian) CONTAINS 'да' OR toLower(n.includes_bulgarian) CONTAINS 'yes')");
+  }
 
-            if (data.length === 0) {
-                container.innerHTML = '<div class="error">No data found in CSV</div>';
-                return;
-            }
+  // Always filter verified only
+  conds.push("n.verified IN $verified");
+  params.verified = ['VERIFIED'];
 
-            data.forEach((entry, index) => {
-                const entryDiv = document.createElement('div');
-                entryDiv.className = 'entry';
+  const where = conds.length ? ' WHERE ' + conds.join(' AND ') : '';
+  return { where, params };
+}
 
-                // Create header with title and toggle button
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'entry-header';
-                
-                const titleDiv = document.createElement('div');
-                const name = entry['Име'] || 'Без име';
-                const size = entry['Размер в брой параметри'] || '';
-                titleDiv.innerHTML = `<span class="entry-title">${name}</span>${size ? `<span class="entry-size">(${size})</span>` : ''}`;
-                
-                const toggleButton = document.createElement('div');
-                toggleButton.className = 'toggle-button';
-                toggleButton.textContent = '+';
-                
-                headerDiv.appendChild(titleDiv);
-                headerDiv.appendChild(toggleButton);
+// Helper: get checked values for a named group of checkboxes
+function vals(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c => c.value);
+}
 
-                // Create content div with table
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'entry-content-s';
+// ── Count total matching results ─────────────────────────
+async function fetchCount(where, params) {
+  const s = driver.session({ defaultAccessMode: neo4j.session.READ });
+  try {
+    const r = await s.run(`MATCH (n:LLM)${where} RETURN count(n) as total`, params);
+    return r.records[0].get('total').toNumber();
+  } finally {
+    await s.close();
+  }
+}
 
-                const table = document.createElement('table');
-                table.className = 'entry-table';
+// ── Fetch one page of results ────────────────────────────
+async function fetchPage(where, params, page) {
+  const skip = (page - 1) * PAGE_SIZE;
+  const p = Object.assign({}, params, { skip: neo4j.int(skip), limit: neo4j.int(PAGE_SIZE) });
+  const s = driver.session({ defaultAccessMode: neo4j.session.READ });
+  try {
+    const r = await s.run(
+      `MATCH (n:LLM)${where} RETURN n ORDER BY n.family, n.name SKIP $skip LIMIT $limit`, p
+    );
+    return r.records.map(rec => rec.get('n').properties);
+  } finally {
+    await s.close();
+  }
+}
 
-                // Get all keys (categories) from the entry
-                const categories = Object.keys(entry);
+// ── Search entry point ───────────────────────────────────
+App.search = async function() {
+  const q = buildQuery();
+  lastQuery = q;
+  totalResults = await fetchCount(q.where, q.params);
+  document.getElementById('s-total').textContent = totalResults.toLocaleString('bg');
+  await loadPage(1);
+};
 
-                categories.forEach(category => {
-                    const value = entry[category];
-                    
-                    // Skip the **Абревиатура** category
-                    if (category === '**Абревиатура**') {
-                        return;
-                    }
-                    
-                    // Only display if value is non-empty
-                    if (value && value.toString().trim() !== '') {
-                        const row = document.createElement('tr');
-                        
-                        const categoryCell = document.createElement('td');
-                        categoryCell.className = 'category-name';
-                        categoryCell.textContent = category;
-                        
-                        const valueCell = document.createElement('td');
-                        valueCell.className = 'category-value';
-                        valueCell.innerHTML = value;
-                        
-                        row.appendChild(categoryCell);
-                        row.appendChild(valueCell);
-                        table.appendChild(row);
-                    }
-                });
+// ── Load & render a page ─────────────────────────────────
+async function loadPage(page) {
+  currentPage = page;
+  document.getElementById('s-page').textContent = page;
+  const nodes = await fetchPage(lastQuery.where, lastQuery.params, page);
+  const list = document.getElementById('results-list');
+  list.innerHTML = '';
+  nodes.forEach(props => list.appendChild(renderCard(props)));
+  renderPagination(totalResults, page, loadPage);
+}
 
-                contentDiv.appendChild(table);
+// ── JSON export (all results, batched by 100) ────────────
+App.downloadJSON = async function() {
+  const allNodes = [];
+  const batchSize = 100;
+  for (let skip = 0; skip < totalResults; skip += batchSize) {
+    const p = Object.assign({}, lastQuery.params, { skip: neo4j.int(skip), limit: neo4j.int(batchSize) });
+    const s = driver.session({ defaultAccessMode: neo4j.session.READ });
+    const r = await s.run(
+      `MATCH (n:LLM)${lastQuery.where} RETURN n ORDER BY n.family, n.name SKIP $skip LIMIT $limit`, p
+    );
+    await s.close();
+    r.records.forEach(rec => {
+      const props = rec.get('n').properties;
+      const clean = {};
+      for (const [k, v] of Object.entries(props)) {
+        clean[k] = (v && typeof v === 'object' && v.toNumber) ? v.toNumber() : v;
+      }
+      allNodes.push(clean);
+    });
+  }
+  const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), total: totalResults, models: allNodes }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'llm-models-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+};
 
-                // Add click handler to toggle visibility
-                headerDiv.addEventListener('click', function() {
-                    contentDiv.classList.toggle('visible');
-                    toggleButton.textContent = contentDiv.classList.contains('visible') ? '-' : '+';
-                });
-
-                entryDiv.appendChild(headerDiv);
-                entryDiv.appendChild(contentDiv);
-                container.appendChild(entryDiv);
-            });
-        }
+// ── Reset all filters ────────────────────────────────────
+App.reset = function() {
+  document.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = false);
+  ['f-name', 'f-year-from', 'f-year-to'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('f-bg').checked = false;
+  document.getElementById('ifgpt-results').classList.add('hidden');
+};
