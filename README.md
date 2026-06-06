@@ -6,7 +6,7 @@ The project aims to develop a freely accessible infrastructure for the selection
 
 ## IfGPT-LLM Description
 
-A structured knowledge base of Large Language Models (LLMs) stored in a Neo4j graph database. The dataset captures rich descriptive metadata for each model — from architecture and training methods to access types and language support — and provides ready-to-use tooling to query and visualise it.
+A structured knowledge base of Large Language Models (LLMs) stored in a Neo4j graph database. The dataset captures rich descriptive metadata for each model – from architecture and training methods to access types and language support, and provides ready-to-use tools to query and visualise it.
 
 
 - **Metadata schema** — full property definitions for LLM nodes (types, index status, relationships) as returned by `apoc.meta.schema()`
