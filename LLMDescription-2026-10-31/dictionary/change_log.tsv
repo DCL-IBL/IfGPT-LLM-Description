@@ -1,0 +1,400 @@
+Промяна
+Обединени: 4.30 „Extended thinking / разширено разсъждаване“ → 5.32 „Extended Thinking“
+Обединени: 4.15 „GRPO (Group Relative Policy Optimization)“ → 4.33 „GRPO (Group Relative Policy Optimization)“
+Обединени: 1.5 „Grouped Query Attention (GQA)“ → 1.36 „Grouped Query Attention (GQA)“
+Обединени: 1.27 „Quantization“ → 5.23 „Quantization“
+Обединени: 4.28 „Depth up-scaling (post-training)“ → 1.24 „Depth Up-Scaling“
+Обединени: 1.23 „Continual Pretraining (architecture)“ → 3.3 „Continual pre-training“
+Обединени: 9.58 „continual pre-training“ → 3.3 „Continual pre-training“
+Обединени: 1.15 „Speculative Decoding“ → 5.15 „Speculative decoding“
+Обединени: 5.29 „Hallucination“ → 9.33 „Hallucination“
+Обединени: 6.34 „speech recognition“ → 6.28 „Speech recognition (ASR)“
+BG термин: Multi-Query Attention (MQA): „*едноглаво ключово внимание (MQA)“ → „внимание с множество заявки (MQA)“
+BG термин: Sparse Attention: „*оскъдно внимание (sparse attention)“ → „разредено внимание (sparse attention)“
+BG термин: Multi-Token Prediction (MTP): „*предсказване на множество токени (MTP)“ → „прогнозиране на множество токени (MTP)“
+BG термин: CLIP (vision encoder): „*CLIP (контрастивно предобучение на език и изображения)“ → „*CLIP (контрастивно предварително обучение на език и изображения)“
+BG термин: SigLIP (vision encoder): „*SigLIP (сигмоидна загуба за предобучение на език-изображение)“ → „*SigLIP (сигмоидна загуба за предварително обучение на език-изображение)“
+BG термин: Depth Up-Scaling: „*мащабиране чрез задълбочаване“ → „*мащабиране чрез задълбочаване (depth up-scaling)“
+BG термин: Pretraining: „предобучение / предтрениране“ → „предварително обучение (pre-training)“
+BG термин: Multi-phase pretraining: „*многофазно предобучение / многоетапно предобучение“ → „*многоетапно предварително обучение (multi-phase pre-training)“
+BG термин: Midtraining: „*средно обучение (между предобучение и фина настройка)“ → „*средно обучение (между предварително обучение и фина настройка)“
+BG термин: Supervised Fine-Tuning (SFT): „фина настройка с инструкции / супервизирана фина настройка (SFT)“ → „супервизирана фина настройка (SFT)“
+BG термин: Chain-of-thought training: „обучение с верига от разсъждения (CoT)“ → „обучение с мисловна верига (CoT)“
+BG термин: Constitutional AI: „*конституционен AI (Constitutional AI)“ → „конституционен изкуствен интелект (Constitutional AI)“
+BG термин: Chain-of-thought (CoT) prompting: „верига от разсъждения (CoT)“ → „мисловна верига (CoT)“
+BG термин: Quantization: „квантизация (за инференция)“ → „квантизация (quantization)“
+BG термин: GRPO (Group Relative Policy Optimization): „Оптимизация на политиките по отношение на групата (GRPO)“ → „оптимизация на политиките по отношение на групата (GRPO)“
+BG термин: RAG-first: „*с първоначално извличане с разширено генериране (RAG-first)“ → „*с приоритет на генерирането, подпомогнато с извличане (RAG-first)“
+Нов термин: Causal encoder-decoder → каузален енкодер-декодер (causal encoder-decoder) [1. Архитектура на модела] — 1 модела
+Нов термин: Shared expert (MoE) → споделен експерт (shared expert) [1. Архитектура на модела] — 3 модела
+Нов термин: xIELU activation → активационна функция xIELU [1. Архитектура на модела] — 1 модела
+Нов термин: LatentMoE → латентна смес от експерти (LatentMoE) [1. Архитектура на модела] — 1 модела
+Нов термин: Goldfish loss / objective → целева функция Goldfish (Goldfish loss) [3. Предварително обучение] — 1 модела
+Нов термин: AdEMAMix optimizer → оптимизатор AdEMAMix [3. Предварително обучение] — 1 модела
+Нов термин: Tokenizer adaptation / vocabulary extension → адаптиране на токенизатора / разширяване на речника на токенизатора [3. Предварително обучение] — 5 модела
+Нов термин: QRPO → *QRPO (Quantile Reward Policy Optimization — да се провери) [4. Последващо обучение] — 1 модела
+Нов термин: Quantization-aware training (QAT) → обучение, отчитащо квантизацията (QAT) [4. Последващо обучение] — 1 модела
+Нов термин: Pruning / model compression (Minitron) → подрязване (pruning) / компресия на модела [5. Инференция и внедряване] — 7 модела
+Нов термин: 4-bit formats: NVFP4, MXFP4, W4A4 → 4-битова квантизация (NVFP4 / MXFP4 / W4A4) [5. Инференция и внедряване] — 5 модела
+Нов термин: Long decode → дълго декодиране (long decode) [5. Инференция и внедряване] — 1 модела
+Нов термин: Context compaction → компресиране на контекста (compaction) [5. Инференция и внедряване] — 1 модела
+Нов термин: Omnimodal model → омнимодален модел [6. Способности и модалности] — 10 модела
+Нов термин: Model-as-a-Service (MaaS) → модел като услуга (MaaS) [8. Достъп и лицензиране] — 3 модела
+Нов термин: Fully open model → изцяло отворен модел (данни, код, тегла) [8. Достъп и лицензиране] — 2 модела
+Нов термин: Downstream provider → доставчик надолу по веригата (downstream provider) [8. Достъп и лицензиране] — 0 модела
+Нов термин: General-purpose AI model (GPAI) → модел на ИИ с общо предназначение (GPAI) [9. Общи термини] — 0 модела
+Нов термин: Systemic risk (AI Act) → системен риск (systemic risk) [9. Общи термини] — 0 модела
+Нов термин: Sovereign AI → суверенен изкуствен интелект / технологичен суверенитет в областта на ИИ [9. Общи термини] — 0 модела
+— Одит 2026.10.31 —
+1.10 Hybrid Attention → хибридно внимание (hybrid attention) | Отделено от хибридната архитектура Mamba–трансформатор (нов запис).
+1.17 SigLIP → SigLIP (сигмоидна функция на загуба за предварително обучение на езика и изображенията) 
+1.23 FP8 → 8-битов формат с плаваща запетая (FP8) | FP8 е числов формат, не синоним на квантизация.
+1.26 WordPiece → токенизация чрез поддуми (WordPiece) | „поддуми“ е засвидетелствано при Хардалов 2022; одитът предлага „подсловни единици“.
+1.31 Gated Delta Networks → делта-мрежи с управляващи порти (Gated Delta Networks) | Gated = с управляващи порти, не „затворени“.
+1.38 Manifold-Constrained → хипервръзки с ограничение върху многообразие (mHC) | Manifold = многообразие (математика); да се сравни с оригиналната статия.
+2.1 Parameter → параметър (parameter) | Тегло (weight) е подвид параметър, не синоним.
+2.5 Sparsity ratio → коефициент на разреденост (sparsity ratio) | Определение: дял на неактивните параметри = 1 − (активни / общо). Съотношението „активни/общо“ е обратната величина.
+2.6 Number of experts → брой експерти (number of experts) | Отделено от „брой активни експерти на токен“ (нов запис).
+2.10 KV heads / KV cache → KV (Key-Value) кеш (KV cache) | Отделено от „KV heads“ (нов запис).
+3.9 Midtraining → междинен етап на обучение (midtraining) 
+3.10 Curriculum learning → обучение с постепенно усложняване (curriculum learning) | Да се свери с употребата в българската литература.
+3.14 Data quality filtering → филтриране на данни по качество (data quality filtering) 
+4.9 Alignment → съгласуване (alignment) | Привеждане на поведението на модела в съответствие с цели и предпочитания; „съотнасяне“ е неточно.
+4.12 Reward modeling → моделиране на наградата (reward modeling) | Модел на наградата (reward model) е резултатът от моделирането.
+4.20 PEFT → фина настройка с ефективно използване на параметрите (PEFT) 
+4.31 cold-start → начален етап с подбрани данни (cold-start) | При DeepSeek-R1 и др.: малък подбран набор от данни преди подсилващото обучение; „нулев старт“ подвежда.
+4.36 auxiliary-loss → балансиране чрез допълнителна функция на загуба (auxiliary-loss balancing) | При DeepSeek-V3: балансиране без допълнителна функция на загуба (auxiliary-loss-free).
+4.37 Virtual Adversarial → виртуално състезателно обучение (Virtual Adversarial Training) | Adversarial = състезателно, не „с противоречиви данни“.
+5.1 Inference → инференция / правене на изводи (inference) | Не е равнозначно на генериране на текст. „Правене на изводи“ — Акт за ИИ.
+5.9 Zero-shot → без примери (zero-shot) | Хардалов 2022: „трансфер без допълнително обучение (zero-shot)“.
+5.10 Few-shot → с малко примери (few-shot) 
+5.21 Local inference → локална инференция (local inference) | Внедряването в собствена инфраструктура е отделен запис (on-premise deployment).
+5.25 Agentic AI → агентски изкуствен интелект (agentic AI) | Отделено от „агентски работни процеси“ (нов запис). Одитът предлага „агентен“; запазено „агентски“ за съгласуваност с базата данни.
+5.29 Grounding → обвързване с източници / с проверими данни (grounding) | „Заземяване“ е неточно в контекста на обработката на естествен език.
+5.44 multi-step agentic → многостъпкови агентски работни процеси (multi-step agentic workflows) | Multi-step = многостъпков, не „многофазов“.
+6.2 Question answering → отговаряне на въпроси (QA) | Задача; системата е отделен запис. Засвидетелствано при Хардалов 2022.
+6.15 Formal theorem proving → формално доказване на теореми 
+6.21 Image captioning → автоматично генериране на описания на изображения (image captioning) 
+7.1 Benchmark →  | ВЪЗРАЖЕНИЕ към одита: терминът е запазен (решение на потребителя, приложено в цялата база). Бенчмаркът включва задачи, данни и методика за оценяване, не само набор от данни. Засвидетелствани алтернативи: „бенчмарк“ (Хардалов 2022).
+8.6 On-premise deployment → внедряване в собствена инфраструктура (on-premise) 
+8.13 Open-source → с отворен код (open-source) | Различно от „с отворени тегла“ (open-weight) и от „отворен модел“ без уточнение.
+8.16 Proprietary license → собственически лиценз (proprietary) | Не е непременно платен.
+9.37 Data contamination → замърсяване на данните (data contamination) | Отделено от замърсяването на данните за оценка (нов запис).
+9.43 Pipeline → конвейер / последователност от обработки (pipeline) 
+9.55 Transformer training → обучение на трансформаторен модел (Transformer training) 
+9.57 state-of-the-art → най-съвременен (state-of-the-art) | Засвидетелствано: „най-съвременни (state-of-the-art)“ — Хардалов 2022. Калката „на съвременното състояние на техниката“ е заменена в базата данни.
+Нов запис: Hybrid Mamba–Transformer architecture → хибридна архитектура Mamba–трансформатор
+Нов запис: Active experts per token (MoE) → брой активни експерти на токен
+Нов запис: KV heads → глави за ключове и стойности (KV heads)
+Нов запис: Agentic workflows → агентски работни процеси (agentic workflows)
+Нов запис: Question-answering system → въпросно-отговорна система (QA system)
+Нов запис: Benchmark contamination → замърсяване на данните за оценка (benchmark contamination)
+— Решения на потребителя 2026.10.31 —
+1.35 TMRoPE: *мултимодално вграждане с времева синхронизация на ротационна позиция (TMRoPE) → *многомодално вграждане с времева синхронизация на ротационна позиция (TMRoPE)
+6.3 Conversational AI / Chatbot: разговорен AI / чатбот / диалогов модел → разговорен ИИ / чатбот / диалогов модел
+6.26 Interleaved multimodal: *редуващ се мултимодален формат → *редуващ се многомодален формат
+8.23 Responsible AI: *отговорен AI (responsible AI) → *отговорен ИИ (responsible AI)
+9.1 Large Language Model (LLM): голям езиков модел (ГЕМ / LLM) → голям езиков модел (LLM)
+9.7 Reasoning model: *разсъждаващ модел / reasoning модел → *модел за разсъждения
+Reasoning model → модел за разсъждения
+Нов запис: Zero-shot transfer → трансфер без допълнително обучение (zero-shot)
+Нов запис: Training → обучение (training); допуска се и „трениране“; прил. „тренировъчен“
+Нов запис: AI (Artificial Intelligence) → изкуствен интелект (ИИ)
+7.9 Zero-shot evaluation: възстановено английското име; BG → оценка без примери (zero-shot evaluation)
+5.27 RAG: брой модели 43 → 31 (преброено в описанията, 2026.10.31)
+— Уеб проверка 2026.10.31: 44 записа потвърдени чрез външни източници; поправени термини: 9.47, 4.25 —
+6.11 Code generation: * → потвърден (УНСС 2025 (Стефанов), ESKOM речник)
+9.33 Hallucination: проверен → потвърден (УНСС 2025 (Стефанов), ExchangeAI 2025)
+8.25 Data privacy: * → потвърден (УНСС 2025 (Стефанов), ClickUp 2024)
+8.24 GDPR compliance: * → потвърден (УНСС 2025 (Стефанов))
+5.25 Agentic AI: проверен → потвърден (ExchangeAI 2025)
+6.28 Speech recognition (ASR): проверен → потвърден (ExchangeAI 2025)
+9.35 Bias (in AI): * → потвърден (ExchangeAI 2025)
+8.23 Responsible AI: * → потвърден (ExchangeAI 2025, ESKOM речник)
+6.33 vision tasks: проверен → потвърден (ExchangeAI 2025, ESKOM речник)
+4.8 Knowledge distillation / дестилация: проверен → потвърден (ESKOM речник, 24 часа (Meta))
+3.21 Synthetic data: * → потвърден (ESKOM речник, ClickUp 2024, INSAIT BgGPT 3.0)
+6.31 Semantic search: * → потвърден (ESKOM речник)
+9.13 Attention mechanism: * → потвърден (ESKOM речник)
+8.10 Model card: * → потвърден (ESKOM речник)
+8.12 Model versioning: * → потвърден (ESKOM речник)
+6.29 Voice / Speech generation (TTS): * → потвърден (ESKOM речник)
+2.15 GPU (compute): проверен → потвърден (ESKOM речник)
+3.25 OCR (Optical Character Recognition): * → потвърден (ESKOM речник)
+6.22 OCR / Document understanding (visual): * → потвърден (ESKOM речник)
+5.18 Latency: * → потвърден (ESKOM речник)
+3.2 Training from scratch: * → потвърден (Money.bg (Baidu))
+9.54 cost-effectiveness: проверен → потвърден (ClickUp 2024)
+9.9 Small Language Model (SLM): * → потвърден (ClickUp 2024, INSAIT блог)
+6.7 Text classification: * → потвърден (ClickUp 2024)
+8.17 Apache 2.0 license: * → потвърден (ClickUp 2024)
+9.60 Sovereign AI: проверен → потвърден (БТА 2026, Dnes.bg)
+4.26 Model merging: * → потвърден (Капитал 2024, INSAIT BgGPT 3.0)
+5.20 VRAM / RAM (memory for inference): * → потвърден (Money.bg (Netflix/INSAIT))
+3.23 Parallel data (translation): * → потвърден (ИБЕ-БАН (Лазаров 2020))
+6.8 Named entity recognition (NER): проверен → потвърден (УНСС ИИТЕД 2024)
+2.12 Flagship model: * → потвърден (Investor.bg (DeepSeek))
+9.30 Gradient / Backpropagation: * → потвърден (ТУ-Габрово (УНИТЕХ), ИИКТ-БАН (Балабанов 2018))
+8.19 Creative Commons (CC) license: * → потвърден (ExchangeAI 2025)
+2.14 Edge model / On-device model: * → потвърден (ESKOM речник)
+8.14 Open-weight (model): * → потвърден (Капитал 2026, Money.bg (Mistral), 24 часа (Meta))
+6.4 Instruction following: * → потвърден (INSAIT блог, INSAIT BgGPT 3.0)
+3.3 Continual pre-training: проверен → потвърден (INSAIT BgGPT 3.0)
+3.15 Data deduplication: * → потвърден (INSAIT BgGPT 3.0)
+3.17 Web data: * → потвърден (INSAIT BgGPT 3.0)
+4.10 Preference data: * → потвърден (INSAIT BgGPT 3.0)
+9.5 Instruct model: * → потвърден (INSAIT BgGPT 3.0)
+8.18 MIT License: * → потвърден (FileFormat BG)
+9.47 Cross-lingual transfer: * → потвърден (Хардалов 2022)
+4.25 Branch-and-Merge (strategy): * → потвърден (INSAIT блог)
+Нов запис 3.35 Training data → тренировъчни данни (решение 2026.10.31); 6 полета в описанията уеднаквени
+— Повторна проверка 2026.10.31 със силни източници: 7 нови потвърдени; повишени източници за слабо подкрепени записи —
+3.6 Training epoch: * → потвърден
+4.9 Alignment: проверен → потвърден
+7.11 Needle-in-a-Haystack: * → потвърден
+5.9 Zero-shot prompting: проверен → потвърден
+5.19 Throughput: * → потвърден
+6.18 Citation / Source attribution: * → потвърден
+9.36 Censorship / Content filtering: * → потвърден
+— Преструктуриране 2026.10.31: разделяне на понятия с „/“, пълни форми на съкращенията, допълнени непълни термини, „платен лиценз“ —
+1.3: Encoder-Decoder Transformer | енкодер-декодер трансформатор → Encoder-decoder transformer | *трансформаторен модел с енкодер и декодер (encoder-decoder transformer) | варианти: енкодер-декодер трансформатор
+1.5: Multi-Head Attention (MHA) | многоглаво внимание → Multi-Head Attention (MHA) | *многоглаво внимание (MHA)
+Разделено: 1.11 „Mamba / State Space Model (SSM)“ → Mamba (state space model architecture) | State Space Model (SSM)
+1.14: NoPE (No Positional Encoding) | без позиционно кодиране (NoPE) → No Positional Encoding (NoPE) | *без позиционно кодиране (NoPE)
+1.16: CLIP (vision encoder) | CLIP (контрастивно предварително обучение на език и изображения) → Contrastive Language–Image Pre-training (CLIP) | *контрастивно предварително обучение на език и изображения (CLIP)
+1.17: SigLIP (vision encoder) | SigLIP (сигмоидна функция на загуба за предварително обучение на езика и изображенията) → Sigmoid Loss for Language–Image Pre-training (SigLIP) | *предварително обучение на език и изображения със сигмоидна функция на загуба (SigLIP)
+1.18: AnyRes (image tiling) | AnyRes — мозайкиране на изображения (AnyRes) → Any Resolution image tiling (AnyRes) | *мозайкиране на изображения с произволна резолюция (AnyRes)
+1.19: SwiGLU (activation function) | SwiGLU активационна функция (SwiGLU) → Swish-Gated Linear Unit (SwiGLU) | *линейна единица с управляваща порта Swish (SwiGLU) | варианти: активационна функция SwiGLU
+1.20: RMSNorm | нормализация по средноквадратична стойност (RMSNorm) → Root Mean Square Layer Normalization (RMSNorm) | *нормализация на слоя по средноквадратична стойност (RMSNorm)
+1.22: LoRA (Low-Rank Adaptation) | нискорангова адаптация (LoRA) → Low-Rank Adaptation (LoRA) | *нискорангова адаптация (LoRA)
+1.23: FP8 (floating point precision) | 8-битов формат с плаваща запетая (FP8) → 8-bit Floating Point (FP8) | 8-битов формат с плаваща запетая (FP8)
+1.24: GGUF (model format) | GGUF (унифициран формат за модели) → GPT-Generated Unified Format (GGUF) | *унифициран формат за файлове на модели (GGUF)
+1.25: Safetensors (model format) | Safetensors (формат за тензори) → Safetensors (model weight format) | *формат Safetensors за тегла на модели
+Разделено: 1.27 „Context Length / Context Window“ → Context window | Context length
+1.33: DCA (Dual Chunk Attention) | двойно фрагментно внимание (DCA) → Dual Chunk Attention (DCA) | двойно фрагментно внимание (DCA)
+1.35: TMRoPE | многомодално вграждане с времева синхронизация на ротационна позиция (TMRoPE) → Time-aligned Multimodal Rotary Position Embedding (TMRoPE) | многомодално ротационно позиционно вграждане с времева синхронизация (TMRoPE)
+1.41: xIELU activation | активационна функция xIELU → Expanded Integral of the Exponential Linear Unit (xIELU) | активационна функция „разширен интеграл на експоненциалната линейна единица“ (xIELU)
+1.42: LatentMoE | латентна смес от експерти (LatentMoE) → Latent Mixture of Experts (LatentMoE) | латентна смес от експерти (LatentMoE)
+2.2: Billion parameters (B) | милиард параметри / нотация B → Billion parameters (B) | милиард параметри (B) | варианти: нотация B
+2.7: Layer (depth) | слой / дълбочина на модела → Layer | слой (layer) | варианти: дълбочина на модела (брой слоеве)
+Разделено: 2.8 „Hidden dimension / Embedding dimension“ → Hidden dimension | Embedding dimension
+2.10: KV cache | KV (Key-Value) кеш (KV cache) → Key-Value cache (KV cache) | KV (Key-Value) кеш (KV cache)
+2.11: Frontier model | граничен модел / модел от най-ново поколение → Frontier model | *граничен модел | варианти: модел от най-ново поколение
+2.12: Flagship model | флагмански модел / водещ модел → Flagship model | флагмански модел | варианти: водещ модел
+Разделено: 2.13 „Compact model / Small model“ → Compact model | Small model
+Разделено: 2.14 „Edge model / On-device model“ → Edge model | On-device model
+2.15: GPU (compute) | графичен процесор (GPU) → Graphics Processing Unit (GPU) | графичен процесор (GPU)
+Разделено: 2.16 „FLOP / Compute budget“ → Floating-Point Operations (FLOP) | Compute budget
+3.4: Training corpus | тренировъчен корпус / обучителен корпус → Training corpus | *тренировъчен корпус | варианти: обучителен корпус
+3.7: Data mixture | смес от данни / съотношение на данните → Data mixture | *смес от данни | варианти: съотношение на данните
+Разделено: 3.13 „Training infrastructure / Hardware“ → Training infrastructure | Training hardware
+3.17: Web data | уеб данни / данни от интернет → Web data | уеб данни | варианти: данни от интернет
+3.20: Scientific data | научни данни / данни от научни публикации → Scientific data | *научни данни | варианти: данни от научни публикации
+3.22: Multilingual data | многоезични данни / многоезиков корпус → Multilingual data | *многоезични данни | варианти: многоезиков корпус
+Разделено: 3.23 „Parallel data (translation)“ → Parallel data | Parallel corpus
+Разделено: 3.24 „High-quality / curated data“ → High-quality data | Curated data
+3.25: OCR (Optical Character Recognition) | оптично разпознаване на символи (OCR) → Optical Character Recognition (OCR) | оптично разпознаване на символи (OCR)
+Разделено: 3.26 „Tokenizer / Vocabulary (pretraining)“ → Tokenizer | Vocabulary (of a tokenizer)
+3.27: ELECTRA-style pre-training | предварително обучение по модела на ELECTRA → ELECTRA-style pre-training (Efficiently Learning an Encoder that Classifies Token Replacements Accurately) | *предварително обучение по модела на ELECTRA
+3.29: FIM (fill-in-the-middle) | попълване на липсващ текст (FIM) → Fill-in-the-Middle (FIM) | попълване на липсващ текст (FIM)
+3.30: Muon optimizer | Muon оптимизатор → MomentUm Orthogonalized by Newton–Schulz optimizer (Muon) | *оптимизатор Muon (MomentUm Orthogonalized by Newton–Schulz)
+3.31: mixed-precision training | смесена прецизност (mixed-precision) → Mixed-precision training | обучение със смесена прецизност (mixed-precision training)
+3.32: Goldfish loss / objective | целева функция Goldfish (Goldfish loss) → Goldfish loss (Goldfish objective) | целева функция Goldfish (Goldfish loss)
+3.33: AdEMAMix optimizer | оптимизатор AdEMAMix → AdEMAMix optimizer (Adam with a mixture of two exponential moving averages) | оптимизатор AdEMAMix
+Разделено: 3.34 „Tokenizer adaptation / vocabulary extension“ → Tokenizer adaptation | Vocabulary extension
+4.6: Post-training | постобучение / следобучение → Post-training | последващо обучение (post-training)
+4.7: Chain-of-thought training | обучение с мисловна верига (CoT) → Chain-of-Thought (CoT) training | обучение с мисловна верига (CoT)
+4.8: Knowledge distillation / дестилация | дестилация на знания (knowledge distillation) → Knowledge distillation | дестилация на знания (knowledge distillation)
+4.9: Alignment / съотнасяне | съгласуване (alignment) → Alignment | съгласуване (alignment)
+4.11: RLHF | подсилващо обучение от обратна връзка на хора (RLHF) → Reinforcement Learning from Human Feedback (RLHF) | *подсилващо обучение от обратна връзка на хора (RLHF)
+4.13: PPO (Proximal Policy Optimization) | проксимална оптимизация на политика (PPO) → Proximal Policy Optimization (PPO) | *проксимална оптимизация на политиката (PPO)
+4.14: DPO (Direct Preference Optimization) | директна оптимизация на предпочитания (DPO) → Direct Preference Optimization (DPO) | директно оптимизиране на предпочитанията (DPO)
+4.15: RLVR (RL with Verifiable Rewards) | подсилващо обучение с проверими награди (RLVR) → Reinforcement Learning with Verifiable Rewards (RLVR) | *подсилващо обучение с проверими награди (RLVR)
+4.16: APO (Anchored Preference Optimization) | закотвена оптимизация на предпочитания (APO) → Anchored Preference Optimization (APO) | *закотвена оптимизация на предпочитанията (APO)
+4.18: Safety training | обучение за безопасност / safety обучение → Safety training | *обучение за безопасност (safety training)
+4.19: Self-improvement (recursive) | рекурсивно самоусъвършенстване (self-improvement) → Recursive self-improvement | *рекурсивно самоусъвършенстване (recursive self-improvement)
+4.20: PEFT (Parameter-Efficient Fine-Tuning) | фина настройка с ефективно използване на параметрите (PEFT) → Parameter-Efficient Fine-Tuning (PEFT) | *фина настройка с ефективно използване на параметрите (PEFT)
+4.22: Full fine-tuning | пълно фино настройване / фина настройка на всички тегла → Full fine-tuning | *пълна фина настройка (full fine-tuning) | варианти: фина настройка на всички тегла
+4.23: Domain adaptation | доменна адаптация / специализация по предметна област → Domain adaptation | *доменна адаптация | варианти: специализация по предметна област
+4.24: Language adaptation | езикова адаптация / адаптация към език → Language adaptation | *езикова адаптация | варианти: адаптация към език
+4.28: Hybrid thinking mode / хибриден режим | хибриден режим на разсъждаване → Hybrid thinking mode | хибриден режим на разсъждаване
+Разделено: 4.29 „Expert routing / Expert selection (MoE)“ → Expert routing (MoE) | Expert selection (MoE)
+4.30: GRPO (Group Relative Policy Optimization) | оптимизация на политиките по отношение на групата (GRPO) → Group Relative Policy Optimization (GRPO) | оптимизация на политиките по отношение на групата (GRPO)
+4.31: cold-start (training) | начален етап с подбрани данни (cold-start) → Cold-start training | начален етап с подбрани данни (cold-start)
+4.39: QRPO | QRPO (Quantile Reward Policy Optimization — да се провери) → Quantile Reward Policy Optimization (QRPO) | *оптимизация на политиката с квантилна награда (QRPO)
+5.1: Inference | инференция / правене на изводи (inference) → Inference | инференция (inference) | варианти: правене на изводи (Акт за ИИ)
+5.2: Prompt | заявка / промпт → Prompt | заявка (prompt) | варианти: промпт
+5.3: System prompt | системно съобщение / системна инструкция → System prompt | системно съобщение | варианти: системна инструкция
+5.4: Prompt template | шаблон за заявка / шаблон за промпт → Prompt template | шаблон за заявка | варианти: шаблон за промпт
+Разделено: 5.6 „Top-p / Nucleus sampling“ → Top-p sampling | Nucleus sampling
+5.9: основната форма „заявка без примери (zero-shot prompting)“ не е засвидетелствана → проверен (вариантите са в колона „BG варианти“)
+5.9: Zero-shot prompting | без примери (zero-shot) → Zero-shot prompting | заявка без примери (zero-shot prompting) | варианти: без примери
+5.10: Few-shot | с малко примери (few-shot) → Few-shot prompting | *заявка с малко примери (few-shot prompting) | варианти: с малко примери
+5.11: Chain-of-thought (CoT) prompting | мисловна верига (CoT) → Chain-of-Thought (CoT) prompting | мисловна верига (CoT)
+5.16: основната форма „поточно извеждане на отговора (streaming)“ не е засвидетелствана → проверен (вариантите са в колона „BG варианти“)
+5.16: Streaming (output) | стрийминг (streaming) → Output streaming | поточно извеждане на отговора (streaming) | варианти: стрийминг
+5.17: Batching | групово изпълнение (batching) → Batch processing (batching) | *групова обработка на заявки (batching) | варианти: групово изпълнение
+5.19: Throughput (tokens per second) | пропускателна способност / токени в секунда → Throughput | пропускателна способност (throughput) | варианти: токени в секунда (мерна единица)
+Разделено: 5.20 „VRAM / RAM (memory for inference)“ → Video Random-Access Memory (VRAM) | Random-Access Memory (RAM)
+5.22: API (for LLM access) | приложно-програмен интерфейс (API) → Application Programming Interface (API) | приложно-програмен интерфейс (API)
+Разделено: 5.24 „Tool use / Function calling“ → Tool use | Function calling
+5.27: RAG (Retrieval-Augmented Generation) | генериране, подпомогнато с извличане (RAG) → Retrieval-Augmented Generation (RAG) | генериране, подпомогнато с извличане (RAG)
+5.29: Grounding | обвързване с източници / с проверими данни (grounding) → Grounding | обвързване с източници | варианти: с проверими данни (grounding)
+Разделено: 5.47 „Pruning / model compression (Minitron)“ → Pruning | Model compression
+Разделено: 5.48 „4-bit formats: NVFP4, MXFP4, W4A4“ → NVIDIA 4-bit Floating Point (NVFP4) | Microscaling 4-bit Floating Point (MXFP4) | 4-bit Weights and 4-bit Activations quantization (W4A4)
+6.2: Question answering (QA) | отговаряне на въпроси (QA) → Question Answering (QA) | отговаряне на въпроси (QA)
+Разделено: 6.3 „Conversational AI / Chatbot“ → Conversational AI | Chatbot
+6.5: Summarization | обобщаване / резюмиране → Summarization | обобщаване | варианти: резюмиране
+6.8: Named entity recognition (NER) | разпознаване на именувани обекти (NER) → Named Entity Recognition (NER) | разпознаване на именувани обекти (NER)
+6.10: Multilingual capability | многоезична способност / многоезикова поддръжка → Multilingual capability | *многоезична способност | варианти: многоезикова поддръжка
+6.11: Code generation | генериране на код / генериране на програмен код → Code generation | генериране на код | варианти: генериране на програмен код
+6.12: Agentic coding | агентско кодиране / автономно програмиране → Agentic coding | *агентско кодиране | варианти: автономно програмиране
+Разделено: 6.17 „Deep research / Autonomous research“ → Deep research | Autonomous research
+Разделено: 6.18 „Citation / Source attribution“ → Citation (of sources) | Source attribution
+6.19: Image understanding | разбиране на изображения / анализ на изображения → Image understanding | *разбиране на изображения | варианти: анализ на изображения
+6.22: основната форма „разбиране на документи (document understanding)“ не е засвидетелствана → проверен (вариантите са в колона „BG варианти“)
+6.22: OCR / Document understanding (visual) | оптично разпознаване на символи / разбиране на документи → Document understanding (visual) | разбиране на документи (document understanding)
+Разделено: 6.23 „Chart / Diagram understanding“ → Chart understanding | Diagram understanding
+6.24: Video understanding | разбиране на видео / анализ на видеосъдържание → Video understanding | *разбиране на видео | варианти: анализ на видеосъдържание
+6.26: Interleaved multimodal | редуващ се многомодален формат → Interleaved multimodal input (interleaved image–text data) | *редуващи се текст и изображения във входните данни (interleaved multimodal input) | варианти: редуващ се многомодален формат
+Разделено: 6.28 „Speech recognition (ASR)“ → Speech recognition | Automatic Speech Recognition (ASR)
+Разделено: 6.29 „Voice / Speech generation (TTS)“ → Speech synthesis (voice generation) | Text-to-Speech (TTS)
+6.32: Role-playing | ролева игра / изпълнение на роля → Role-playing | *ролева игра | варианти: изпълнение на роля
+6.33: vision tasks | задачи за компютърно зрение (vision tasks) → Vision tasks | задачи за компютърно зрение (vision tasks)
+7.2: Leaderboard | класация / таблица с резултати (leaderboard) → Leaderboard | класация | варианти: таблица с резултати (leaderboard)
+7.3: Human evaluation | човешка оценка / ръчна оценка → Human evaluation | *човешка оценка | варианти: ръчна оценка
+7.5: LLM-as-a-judge | LLM като съдия (LLM-as-a-judge) → Large Language Model as a judge (LLM-as-a-judge) | *голям езиков модел като оценител (LLM-as-a-judge) | варианти: LLM като съдия
+7.6: Side-by-side evaluation | съпоставително оценяване / сравнение на отговори → Side-by-side evaluation | *съпоставително оценяване | варианти: сравнение на отговори
+7.10: Few-shot evaluation | малко-примерна оценка / оценка с малко примери → Few-shot evaluation | *оценка с малко примери (few-shot evaluation) | варианти: малко-примерна оценка
+8.2: API access | API достъп / достъп чрез приложно-програмен интерфейс → API access | *достъп чрез приложно-програмен интерфейс (API) | варианти: API достъп
+8.3: Model download | изтегляне на модел / сваляне на модел → Model download | изтегляне на модел | варианти: сваляне на модел
+8.7: Cloud deployment | облачно внедряване / облачен достъп → Cloud deployment | *облачно внедряване | варианти: облачен достъп
+8.8: Model weights | тегла (на модела) / теглови параметри → Model weights | тегла (на модела) | варианти: теглови параметри
+8.14: Open-weight (model) | с отворени тегла / open-weight модел → Open-weight model | модел с отворени тегла (open-weight model) | варианти: open-weight модел
+Разделено: 8.15 „Closed-source / Closed-weight“ → Closed-source model | Closed-weight model
+8.16: Proprietary license | собственически лиценз (proprietary) → Proprietary license | платен лиценз (proprietary license) | варианти: собственически лиценз
+8.19: Creative Commons (CC) license | лиценз Creative Commons / CC лиценз → Creative Commons (CC) license | лиценз Creative Commons (CC)
+8.24: основната форма „съответствие с Общия регламент относно защитата на данните (GDPR)“ не е засвидетелствана → проверен (вариантите са в колона „BG варианти“)
+8.24: GDPR compliance | съответствие с GDPR (GDPR compliance) → General Data Protection Regulation (GDPR) compliance | съответствие с Общия регламент относно защитата на данните (GDPR) | варианти: съответствие с GDPR
+Разделено: 8.25 „Data privacy“ → Data privacy | Data protection
+9.4: Base model | базов модел / основен модел → Base model | базов модел | варианти: основен модел
+9.5: Instruct model | инструкционен модел / instruct модел → Instruct model | инструкционен модел (instruct model) | варианти: instruct модел
+9.6: Chat model | чат модел / диалогов модел → Chat model | *чат модел | варианти: диалогов модел
+Разделено: 9.10 „Model family / Model series“ → Model family | Model series
+9.11: Model generation (version) | поколение модел / версия на модела → Model generation (version) | *поколение модел | варианти: версия на модела
+9.12: Transformer | трансформатор / Transformer → Transformer | трансформатор (Transformer)
+9.13: Attention mechanism | механизъм на вниманието / attention механизъм → Attention mechanism | механизъм на вниманието (attention mechanism) | варианти: attention механизъм
+9.14: Neural network | невронна мрежа / изкуствена невронна мрежа → Neural network | невронна мрежа | варианти: изкуствена невронна мрежа
+9.17: Natural language processing (NLP) | обработка на естествен език (ОЕЕ / NLP) → Natural language processing (NLP) | обработка на естествен език (NLP) | варианти: ОЕЕ
+9.18: Natural language understanding (NLU) | разбиране на естествен език (РЕЕ / NLU) → Natural language understanding (NLU) | разбиране на естествен език (NLU) | варианти: РЕЕ
+9.19: Natural language generation (NLG) | генериране на естествен език (ГЕЕ / NLG) → Natural language generation (NLG) | генериране на естествен език (NLG) | варианти: ГЕЕ
+Разделено: 9.26 „Max tokens / Max output length“ → Maximum number of tokens (max tokens) | Maximum output length
+Разделено: 9.27 „Chat history / Conversation history“ → Conversation history | Chat history
+9.28: основната форма „функция на загубата“ не е засвидетелствана → проверен (вариантите са в колона „BG варианти“)
+9.28: Loss function | функция на загубата / функция на грешката → Loss function | функция на загубата | варианти: функция на грешката
+Разделено: 9.30 „Gradient / Backpropagation“ → Gradient | Backpropagation
+Разделено: 9.31 „Overfitting / Underfitting“ → Overfitting | Underfitting
+9.32: основната форма „генерализация (generalization)“ не е засвидетелствана → проверен (вариантите са в колона „BG варианти“)
+9.32: Generalization | обобщаване / генерализация → Generalization | генерализация (generalization) | варианти: обобщаване (омоним с „обобщаване“ = summarization)
+Разделено: 9.36 „Censorship / Content filtering“ → Censorship (of model output) | Content filtering
+Разделено: 9.39 „Vector store / Vector database“ → Vector store | Vector database
+9.42: Text splitter | разделител на текст / текстов сплитер → Text splitter | *разделител на текст | варианти: текстов сплитер
+9.43: Pipeline (NLP) | конвейер / последователност от обработки (pipeline) → Pipeline (NLP) | конвейер | варианти: последователност от обработки (pipeline)
+9.49: Reinforcement Learning (general) | подсилващо обучение (RL) → Reinforcement Learning (RL) | подсилващо обучение (RL)
+9.50: chain-of-thought reasoning | разсъждения с мисловна верига (chain-of-thought) → Chain-of-Thought (CoT) reasoning | разсъждения с мисловна верига (CoT)
+9.56: generally available (GA) | общодостъпен (generally available) → Generally available (GA) | общодостъпен (GA)
+9.60: Sovereign AI | суверенен изкуствен интелект / технологичен суверенитет в областта на ИИ → Sovereign AI | суверенен изкуствен интелект | варианти: технологичен суверенитет в областта на ИИ
+2.18: KV heads | глави за ключове и стойности (KV heads) → Key-Value heads (KV heads) | глави за ключове и стойности (KV heads)
+Възстановени засвидетелстваните основни форми за: Zero-shot prompting, Output streaming, GDPR compliance, Loss function, Generalization (решение за омонимията предстои)
+— Преводи от потребителя (кол. G), 2026.10.31 —
+1.3 Encoder-decoder transformer: „трансформаторен модел с енкодер и декодер (encoder-decoder transformer)“ → „трансформатор с енкодер и декодер“ [* → проверен]
+1.4 Mixture of Experts (MoE): „смес от експерти (MoE)“ → „комбинация от експерти (MoE)“ [проверен → проверен]
+1.5 Multi-Head Attention (MHA): „многоглаво внимание (MHA)“ → „многоканално внимание (MHA)“ [* → проверен]
+1.7 Rotary Positional Encoding (RoPE): „ротационно позиционно кодиране (RoPE)“ → „ротационно позиционно кодиране (RoPE)“ [* → проверен]
+1.8 Sliding Window Attention (SWA): „плъзгащо прозоречно внимание (SWA)“ → „локализирано прозоречно внимание (SWA)“ [* → проверен]
+1.13 Lightning Attention: „светкавично внимание (Lightning Attention)“ → „светкавично внимание“ [* → проверен]
+1.15 No Positional Encoding (NoPE): „без позиционно кодиране (NoPE)“ → „непозиционно кодиране (NoPE)“ [* → проверен]
+1.16 Vision-Language Model (VLM): „визуално-езиков модел (VLM)“ → „визуално-езиков модел (VLM)“ [* → проверен]
+1.23 Low-Rank Adaptation (LoRA): „нискорангова адаптация (LoRA)“ → „нискорангова адаптация (LoRA)“ [* → проверен]
+1.38 Compressed Sparse Attention (CSA): „компресирано разредено внимание (CSA)“ → „компресирано разредено внимание (CSA)“ [* → проверен]
+1.39 Heavily Compressed Attention (HCA): „силно компресирано внимание (HCA)“ → „силно компресирано внимание (HCA)“ [* → проверен]
+2.3 Total parameters: „общ брой параметри“ → „общ брой параметри“ [* → проверен]
+2.4 Active parameters: „активни параметри“ → „активни параметри“ [* → проверен]
+2.8 Hidden dimension: „скрито измерение (hidden dimension)“ → „скрито измерение“ [* → проверен]
+2.9 Embedding dimension: „размерност на вграждането (embedding dimension)“ → „измерение на вграждането“ [* → проверен]
+2.12 Frontier model: „граничен модел“ → „пионерен модел“ [* → проверен]
+3.4 Training corpus: „тренировъчен корпус“ → „тренировъчен корпус“ [* → проверен]
+3.5 Training token count: „брой тренировъчни токени“ → „брой тренировъчни токени“ [* → проверен]
+3.7 Data mixture: „смес от данни“ → „смес от данни“ [* → проверен]
+3.11 Scaling laws: „закони за мащабиране (scaling laws)“ → „закони за мащабиране (scaling laws)“ [* → проверен]
+3.12 Compute-optimal training: „изчислително оптимално обучение (Chinchilla-optimal)“ → „изчислително оптимално обучение (Chinchilla-optimal)“ [* → проверен]
+3.13 Training infrastructure: „инфраструктура за обучение“ → „инфраструктура за обучение“ [* → проверен]
+3.14 Training hardware: „хардуер за обучение“ → „хардуер за обучение“ [* → проверен]
+3.15 Data quality filtering: „филтриране на данни по качество (data quality filtering)“ → „филтриране на данни по качество (data quality filtering)“ [* → проверен]
+3.19 Code data: „данни от програмен код“ → „данни с програмен код“ [* → проверен]
+3.20 Mathematical data: „математически данни“ → „математически данни“ [* → проверен]
+3.21 Scientific data: „научни данни“ → „научни данни“ [* → проверен]
+3.23 Multilingual data: „многоезични данни“ → „многоезични данни“ [* → проверен]
+4.4 Instruction data: „инструкционни данни“ → „данни с инструкции“ [* → проверен]
+4.5 Self-instruct: „самоинструкция (self-instruct)“ → „самоинструкция (self-instruct)“ [* → проверен]
+4.11 Reinforcement Learning from Human Feedback (RLHF): „подсилващо обучение от обратна връзка на хора (RLHF)“ → „подсилващо обучение от обратна връзка на хора (RLHF)“ [* → проверен]
+4.13 Proximal Policy Optimization (PPO): „проксимална оптимизация на политиката (PPO)“ → „оптимизация на политиката с ограничени стъпки (PPO)“ [* → проверен]
+4.15 Reinforcement Learning with Verifiable Rewards (RLVR): „подсилващо обучение с проверими награди (RLVR)“ → „подсилващо обучение с проверими награди (RLVR)“ [* → проверен]
+4.16 Anchored Preference Optimization (APO): „закотвена оптимизация на предпочитанията (APO)“ → „оптимизация на предпочитанията с фиксирана отправна точка (APO)“ [* → проверен]
+4.18 Safety training: „обучение за безопасност (safety training)“ → „обучение за безопасност“ [* → проверен]
+4.19 Recursive self-improvement: „рекурсивно самоусъвършенстване (recursive self-improvement)“ → „рекурсивно самоусъвършенстване“ [* → проверен]
+4.20 Parameter-Efficient Fine-Tuning (PEFT): „фина настройка с ефективно използване на параметрите (PEFT)“ → „фина настройка с ефективно използване на параметрите (PEFT)“ [* → проверен]
+4.22 Full fine-tuning: „пълна фина настройка (full fine-tuning)“ → „пълна фина настройка“ [* → проверен]
+4.23 Domain adaptation: „доменна адаптация“ → „адаптация по предметна област“ [* → проверен]
+4.24 Language adaptation: „езикова адаптация“ → „адаптация към език“ [* → проверен]
+4.29 Expert routing (MoE): „маршрутизиране на експерти (expert routing)“ → „маршрутизиране на експерти“ [* → проверен]
+4.30 Expert selection (MoE): „избор на експерти (expert selection)“ → „избор на експерти“ [* → проверен]
+5.31 Web search (at inference): „уеб търсене (при инференция)“ → „уебтърсене“ [* → проверен]
+5.39 xhigh effort level: „ниво на усилията xhigh“ → „ниво на усилията xhigh“ [* → проверен]
+5.48 Compact deployment: „компактно внедряване (compact deployment)“ → „компактно внедряване (compact deployment)“ [* → проверен]
+6.11 Multilingual capability: „многоезична способност“ → „многоезична способност“ [* → проверен]
+6.13 Agentic coding: „агентско кодиране“ → „агентивно програмиране“ [* → проверен]
+6.14 Software engineering (automated): „автоматизирано разработване на софтуер“ → „автоматизирано разработване на софтуер“ [* → проверен]
+6.15 Mathematical reasoning: „математическо разсъждаване“ → „математически разсъждения“ [* → проверен]
+6.16 Formal theorem proving: „формално доказване на теореми“ → „формално доказване на теореми“ [* → проверен]
+6.17 Long document processing: „обработка на дълги документи“ → „обработка на дълги документи“ [* → проверен]
+6.18 Deep research: „задълбочено изследване (deep research)“ → „задълбочено изследване“ [* → проверен]
+6.19 Autonomous research: „автономно изследване (autonomous research)“ → „автономно изследване“ [* → проверен]
+6.22 Image understanding: „разбиране на изображения“ → „разбиране на изображения“ [* → проверен]
+6.23 Visual question answering (VQA): „визуално отговаряне на въпроси (VQA)“ → „отговаряне на въпроси върху визуално съдържание (VQA)“ [* → проверен]
+6.24 Image captioning: „автоматично генериране на описания на изображения (image captioning)“ → „автоматично генериране на описания на изображения (image captioning)“ [* → проверен]
+6.26 Chart understanding: „разбиране на графики (chart understanding)“ → „разбиране на графики“ [* → проверен]
+6.27 Diagram understanding: „разбиране на диаграми (diagram understanding)“ → „разбиране на диаграми“ [* → проверен]
+6.28 Video understanding: „разбиране на видео“ → „разбиране на видеосъдържание“ [* → проверен]
+6.29 Multi-image understanding: „разбиране на множество изображения“ → „разбиране на множество изображения“ [* → проверен]
+6.31 3D understanding: „разбиране на 3D сцени“ → „разбиране на 3D сцени“ [* → *]
+7.3 Human evaluation: „човешка оценка“ → „човешка оценка“ [* → проверен]
+7.4 Win rate: „процент победи (win rate)“ → „процент на успешните опити“ [* → проверен]
+7.5 Large Language Model as a judge (LLM-as-a-judge): „голям езиков модел като оценител (LLM-as-a-judge)“ → „LLM като съдия (LLM-as-a-judge)“ [* → проверен]
+7.6 Side-by-side evaluation: „съпоставително оценяване“ → „съпоставително оценяване“ [* → проверен]
+8.1 Chat interface access: „достъп чрез чат интерфейс“ → „достъп чрез чат интерфейс“ [* → проверен]
+8.2 Application Programming Interface (API) access: „достъп чрез приложно-програмен интерфейс (API)“ → „API достъп“ [* → проверен]
+8.4 HuggingFace Hub (distribution): „HuggingFace Hub (платформа за разпространение)“ → „HuggingFace“ [* → проверен]
+8.5 Ollama (local deployment platform): „Ollama (платформа за локално внедряване)“ → „Ollama“ [* → проверен]
+8.7 Cloud deployment: „облачно внедряване“ → „облачно внедряване“ [* → проверен]
+8.14 Open-weight model: „модел с отворени тегла (open-weight model)“ → „модел с отворени тегла (open-weight model)“ [потвърден → потвърден]
+8.16 Closed-weight model: „модел със затворени тегла (closed-weight model)“ → „модел със затворени тегла (closed-weight)“ [* → проверен]
+8.15 Closed-source model: „модел със затворен код (closed-source model)“ → „затворен модел (closed-source)“ [потвърден → проверен]
+9.6 Chat model: „чат модел“ → „чат модел“ [* → проверен]
+9.12 Model generation (version): „поколение модел“ → „поколение“ [* → проверен]
+9.21 Autoregressive generation: „авторегресивно генериране (autoregressive generation)“ → „авторегресивно генериране“ [* → проверен]
+9.22 Next-token prediction: „предсказване на следващ токен (next-token prediction)“ → „предсказване на следващия токен“ [* → проверен]
+9.23 Decoding strategy: „стратегия за декодиране (decoding strategy)“ → „стратегия за декодиране“ [* → проверен]
+9.27 Maximum number of tokens (max tokens): „максимален брой токени (max tokens)“ → „максимален брой токени“ [* → проверен]
+9.28 Maximum output length: „максимална дължина на изхода (maximum output length)“ → „максимална дължина на изхода“ [* → проверен]
+9.35 Overfitting: „прекалено нагаждане (overfitting)“ → „свръхнапасване (overfitting)“ [* → проверен]
+9.39 Factual accuracy: „фактическа точност“ → „фактическа точност“ [* → проверен]
+9.44 Prompt engineering: „инженерство на заявките (prompt engineering)“ → „промпт инженерство (prompt engineering)“ [* → проверен]
+9.49 Text splitter: „разделител на текст“ → „разделител на текст“ [* → проверен]
+9.50 Pipeline (NLP): „конвейер (pipeline)“ → „многокомпонентна система“ [потвърден → проверен]
+9.52 Low-resource language: „нискоресурсен език (low-resource language)“ → „език с ограничени ресурси“ [* → проверен]
+9.53 Under-represented language: „слабо представен език (under-represented language)“ → „слабо представен език“ [* → проверен]
+9.55 Tensor: „тензор“ → „тензор“ [* → проверен]
+1.44: „латентна смес от експерти (LatentMoE)“ → „латентна комбинация от експерти (LatentMoE)“ (съгласуване с MoE)
+Поправка: „затворен модел“ е вариант на Closed-weight model (по кол. G); Closed-source model запазва засвидетелстваната форма „модел със затворен код“.
+— 2026.10.31: речникът е приведен към схемата от Табл. A3 (16 полета); добавени определения EN/BG; индексирането е преизчислено; „Proprietary license“ = „платен лиценз“ (вариант „комерсиален лиценз“) —
